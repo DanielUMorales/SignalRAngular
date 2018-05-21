@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <title>@ViewBag.Title</title>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- jQuery Custombox JS -->
+    @RenderSection("Css", false)
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.0.2.min.js" type="text/javascript"></script>
+    <script src="/signalr/hubs"></script>
+
+    <!-- JavaScript -->
+    @RenderSection("JavaScript", false)
+    @Styles.Render("~/Content/css")
+
+</head>
+
+<body ng-app="app">
+    <div ng-controller="mainCtrl">
+        @*PROGRESS BAR MODAL*@
+
+        <script type="text/ng-template" id="myModalContent.html">
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <div class="i-circle warning"><i class="fa fa-info"></i></div>
+                    <div id="result" style="font-size: 1.1em; padding-bottom: 5px">
+                        <progressbar max="max"
+                                        value="dynamic"
+                                        class="progress-striped active">
+                            <span style="color:black; white-space:nowrap;">{{dynamic}} / {{max}}</span>
+                        </progressbar>
+                    </div>
+                    <br />
+                    {{dynamic}} / {{max}}
+                </div>
+            </div>
+
+        </script>
+
+        <div class="cl-mcont">
+            @RenderBody()
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/angular")
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
+    @Scripts.Render("~/bundles/code")
+</body>
+</html>
